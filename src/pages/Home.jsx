@@ -5,7 +5,16 @@ import { RiChatUploadLine } from "react-icons/ri";
 import { MdOutlineChat } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowUp } from "react-icons/fa6";
+import Chat from './Chat';
+import { useContext } from 'react';
+import { datacontext } from '../context/Usercontext';
+
 const Home = () => {
+  let { startres, setStartres } = useContext(datacontext)
+ async function handleSumbit(e) {
+   e.preventDefault();
+   setStartres(true);
+ }
   return (
     <div>
       <nav>
@@ -13,7 +22,8 @@ const Home = () => {
           BRAINWAVE bot
         </div>
       </nav>
-      <div className="hero">
+
+{!startres? <div className="hero">
         <span id='tag'>
           what can i help with?
         </span>
@@ -26,7 +36,11 @@ const Home = () => {
           <span>let's Chat</span></div>
         </div>
       </div>
-      <form  className="input-box">
+      :<Chat />}
+
+
+
+      <form  className="input-box" onSubmit={(e) => handleSumbit(e)}>
       <button id='add'>
         <IoMdAdd />
       </button>
